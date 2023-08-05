@@ -99,6 +99,7 @@ const MainForm = ({ formInputs,dataUser,setDataUser }) => {
                 onClick={click}
                 className={"u-full-width capitalize-style find-btn-main-form"}
               >
+                SEND
               </Button>
             </Form.Group>
     </Form>
