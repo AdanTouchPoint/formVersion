@@ -20,7 +20,6 @@ const MainForm = ({ formInputs,dataUser,setDataUser }) => {
     const isValidEmail = (email) => {
       return emailRegex.test(email.trim());
     };
-
     for (let key in dataUser) {
       console.log(dataUser[key])
       let value = dataUser[key];
