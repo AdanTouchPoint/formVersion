@@ -19,7 +19,9 @@ export default function Home() {
   const [clientId] = useState(`${process.env.NEXT_PUBLIC_CLIENT_ID}`)
   const [endpoints] = useState({
     toGetConfs:'/confs/',
-    toGetFormInputs:'/forms/'
+    toGetFormInputs:'/forms/',
+    toSendEmail: '/send-form-email',
+    toSaveLeads: '/leads/'
   })
   const [leads, setLeads] = useState()
   const [loading, setLoading] = useState(true)
@@ -46,6 +48,10 @@ export default function Home() {
     <MainForm 
     formInputs= {formInputs}
     dataUser={dataUser} 
-    setDataUser={setDataUser}  />
+    setDataUser={setDataUser}
+    backendURLBaseServices={backendURLBaseServices}
+    backendURLBase={backendURLBase}
+    endpoints={endpoints} 
+    clientId={clientId} />
   )
 }

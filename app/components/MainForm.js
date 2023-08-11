@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
+import { fetchData } from "../assets/petitions/fetchData";
+import { fetchLeads } from "../assets/petitions/fetchLeads";
 import "./mainForm.css";
-const MainForm = ({ formInputs,dataUser,setDataUser }) => {
-  let type = ["state","message","name","age","state","email"];
+const MainForm = ({ formInputs,dataUser,setDataUser,backendURLBase,endpoints,
+  backendURLBaseServices,clientId }) => {
   const [validated, setValidated] = useState(false);
   const [error, setError] = useState(false);
   const handleChange = (e) => {
@@ -44,14 +46,29 @@ const MainForm = ({ formInputs,dataUser,setDataUser }) => {
     }
     console.log(dataUser)
     setError(false);
+    const payload = await fetchData(
+      "GET",
+      backendURLBaseServices,
+      endpoints.toSendEmail,
+      clientId,
+      `data=${(JSON.stringify(dataUser))}`
+    );
+  console.log(payload.success)
+  if (payload.success === true) {
+    fetchLeads(
+      true,
+      backendURLBase,
+      endpoints,
+      clientId,
+      dataUser,
+    );
+  }
   };
-
   useEffect( ()=>{
     console.log(dataUser)
   },[dataUser])
   return (
     <div>
-
     <Form name='fm-find'className="contact-form" onSubmit={click} noValidate validated={validated}>
     {error ? (
             <Alert variant={"danger"}>

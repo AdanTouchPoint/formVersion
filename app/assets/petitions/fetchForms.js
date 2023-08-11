@@ -4,7 +4,6 @@ const fetchForms = async (petitionMethod, backendURLBase, endpoint, clientId, se
     const datos = await fetchData(petitionMethod, backendURLBase, endpoint, clientId)
     console.log(datos.data.docs[0].formFields)
     const formFields = datos.data.docs[0].formFields
-
  if(formFields.length > 0) {
     setFormInputs(formFields)
     const labelfields = formFields.map((el)=>{
@@ -13,10 +12,7 @@ const fetchForms = async (petitionMethod, backendURLBase, endpoint, clientId, se
   setDataUser(
     Object.fromEntries(labelfields.map(clave => [clave, ""]))
   )  
-  console.log(miObjeto)
  }
-
-
 }
 export {
     fetchForms
